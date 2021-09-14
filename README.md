@@ -11,6 +11,7 @@ pip install drf-spectacular
 pip install djangorestframework
 pip install markdown 
 pip install django-filter
+pip install django python-dotenv
 ```
 ## Models
 
