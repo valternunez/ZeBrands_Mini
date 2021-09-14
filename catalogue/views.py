@@ -6,8 +6,11 @@
 # DELETE
 #
 from django.contrib.auth import get_user_model
-from rest_framework import generics, permissions
+from django.http import Http404
+from rest_framework import generics, permissions, status
 from rest_framework.generics import CreateAPIView
+from rest_framework.response import Response
+
 from .serializers import ProductSerializer, BrandSerializer, UserSerializer
 from rest_framework.authtoken.admin import User
 from .models import Product, Brand
@@ -37,6 +40,7 @@ class ProductList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     """
