@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-eg-ij5i1%$zf&k5cg45mr2c@%$1fv^jc3tx@0md$9)l-gp&rik
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -83,7 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ZeBrands_Mini.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -93,7 +90,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -113,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -127,7 +122,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -137,3 +131,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+EMAIL_HOST_USER = 'apikey'
+SENDGRID_API_KEY = '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'
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = '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'
+DEFAULT_FROM_EMAIL = "valter.nunez@outlook.com"

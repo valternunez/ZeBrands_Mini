@@ -6,14 +6,27 @@
 # DELETE
 #
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.http import Http404
 from rest_framework import generics, permissions, status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
-
 from .serializers import ProductSerializer, BrandSerializer, UserSerializer
 from rest_framework.authtoken.admin import User
 from .models import Product, Brand
+
+
+# Send Email to admins
+def sendAdminsEmail(product_name):
+    emails = User.objects.filter(is_active=True).values_list('email', flat=True)
+
+    send_mail(
+        product_name + ' has been updated',
+        'There has been a change in the database! ',
+        'valter.nunez@outlook.com',
+        emails,
+        fail_silently=False,
+    )
 
 
 # User administration
@@ -69,16 +82,20 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     def put(self, request, pk, format=None):
         product = self.get_object(pk)
         serializer = ProductSerializer(product, data=request.data, partial=True)
+        name = product.product_name
         if serializer.is_valid():
             serializer.save()
+            sendAdminsEmail(name)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, pk):
         product = self.get_object(pk)
         serializer = ProductSerializer(product, data=request.data, partial=True)
+        name = product.product_name
         if serializer.is_valid():
             serializer.save()
+            sendAdminsEmail(name)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
