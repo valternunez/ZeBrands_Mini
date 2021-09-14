@@ -4,14 +4,14 @@ This Mini-Project is a catalogue of products and its brands. There are 2 types o
 
 ## Installation
 
-The project uses the following packages: DFR(Django REST Framework) and Spectacular Schema.
+The project uses the following packages: DFR(Django REST Framework), SendGrid and Spectacular Schema.
 
 ```bash
 pip install drf-spectacular
 pip install djangorestframework
 pip install markdown 
 pip install django-filter
-pip install django python-dotenv
+pip install django-sendgrid-v5
 ```
 ## Models
 
